@@ -1,0 +1,31 @@
+{
+  "anuncios": [
+    {
+      "nombre": "Bici",
+      "venta": true,
+      "precio": 250.00,
+      "foto": "bici.jpg",
+      "tags": [ "lifestyle", "motor"]
+    },
+    {
+      "nombre": "iPhone 5",
+      "venta": false,
+      "precio": 75.00,
+      "foto": "iphone.png",
+      "tags": [ "lifestyle", "mobile"]
+    },
+    {
+      "nombre": "Macbook air",
+      "venta": false,
+      "precio": 800.00,
+      "foto": "air.png",
+      "tags": ["lifestyle","mobile"]
+    },
+    {
+      "nombre": "Moto",
+      "venta": true,
+      "precio": 1000.00,
+      "foto": "moto.jpg",
+      "tags": ["lifestyle"]
+    }]
+}
