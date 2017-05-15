@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 
 
 require('./lib/mongooseConnection');
-
+require('./models/Advert');
 require('./models/User');
 var app = express();
 
