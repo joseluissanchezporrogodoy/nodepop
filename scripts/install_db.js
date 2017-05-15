@@ -49,9 +49,12 @@ async function main() {
     const newUser = new  User(user);
     await newUser.save(user);
     console.log('User insertado');
+
+    //Termino el proceso
+    process.exit(0);
 }
 
 main().then(()=>{})
     .catch(err=>{
-        console.log('hubo un error',err);
+        console.log('Hubo un error',err);
     });
