@@ -13,6 +13,7 @@ const mongoose = require('mongoose');
 const Advert = mongoose.model('Advert');
 const User = mongoose.model('User');
 const fs = require('fs');
+const sha = require('sha256');
 const json = JSON.parse(fs.readFileSync('lib/adverts_samples.json',{ encoding: 'utf-8'}));
 const conn = mongoose.connection;
 
@@ -45,9 +46,9 @@ async function main() {
     console.log('Insertados anuncios de ejemplo');
 
     //Inserto usuario de prueba
-    let user = { nombre: 'Jose', email: 'jose@gmail.com', clave: 'clave'};
+    let user = { nombre: 'Jose', email: 'jose@gmail.com', clave: sha('15409383¡0496')};
     const newUser = new  User(user);
-    await newUser.save(user);
+    await newUser.save();
     console.log('User insertado');
 
     //Termino el proceso
