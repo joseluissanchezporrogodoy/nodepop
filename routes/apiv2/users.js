@@ -15,12 +15,10 @@ router.post('/', function(req, res, next) {
     //Compruebo si el usuario existe en la base de datos antes de crearlo para no hacerlo dos veces
     let userMail = {email: req.body.email};
     User.checkUserMail(userMail,(err,data)=>{
-        console.log(data);
         if (err) {
             return next(err);
         }
         if(data === null){
-            console.log('inserto');
             User.insertUser(userData,(err, usuario) => {
                 if (err) {
                     return next(err);
@@ -28,9 +26,7 @@ router.post('/', function(req, res, next) {
                 return res.json({ success: true, data: usuario});
             });
         }else {
-            console.log(' no inserto');
             next(new Error('USER_REGISTERED'));
-            console.log('User ya registrado');
         }
     });
 

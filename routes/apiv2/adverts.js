@@ -6,7 +6,7 @@
 var express = require('express');
 var router = express.Router();
 const Advert = require('../../models/Advert');
-const customError = require('../../lib/customError');
+
 
 /* GET del listado filtrado. */
 router.get('/', function(req, res, next) {

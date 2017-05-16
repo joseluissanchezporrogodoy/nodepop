@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 require('./lib/mongooseConnection');
 require('./models/Advert');
 require('./models/User');
+const customError = require('./lib/customError');
 var app = express();
 
 // view engine setup
@@ -43,9 +44,11 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
 
   if(isApi(req)){
-
-      // En vez de este código, llamar a customError para internacionalizar
-    res.json({success:false,error:err.message});
+      // En vez de este código, llamar a customError para internacionalizar los mensajes de error
+      customError(err.message, req.query.lan, (miError) => {
+         res.json({success: false, error: miError});
+          return;
+      });
     return;
   }
   // set locals, only providing error in development
