@@ -30,6 +30,7 @@ app.use('/', require('./routes/index'));
 app.use('/apiv1/adverts', require('./routes/apiv1/adverts'));
 app.use('/apiv2/adverts', require('./routes/apiv2/adverts'));
 app.use('/apiv2/users', require('./routes/apiv2/users'));
+app.use('/apiv2/images', require('./routes/apiv2/images'));
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
