@@ -5,11 +5,6 @@
     "en": "User doesn't found"
   },
 
-  "USER_NOT_FOUND_2": {
-    "es": "El usuario no encontrado",
-    "en": "User doesn't found"
-  },
-
   "USER_REGISTERED":{
     "es": "El usuario ya está registrado",
     "en": "User registered"

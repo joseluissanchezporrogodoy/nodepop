@@ -39,13 +39,11 @@ router.post('/', function(req, res, next) {
 
 router.post('/autenticate', function(req, res, next) {
     let userData = { email: req.body.email, clave: req.body.clave};
-
-
     User.checkUser(userData,(err,data)=>{
         if (err) {
             //Cambiar a usuario no encontrado
-            var errorUsuarioEncontrado =new Error('USER_REGISTERED');
-            errorUsuarioEncontrado.status = '401';
+            var errorUsuarioEncontrado =new Error('USER_NOT_FOUND');
+            errorUsuarioEncontrado.status = '404';
             next(errorUsuarioEncontrado);
             return;
         }
