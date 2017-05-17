@@ -31,11 +31,27 @@ userSchema.statics.insertUser = function(data, callback) {
 }
 
 //Con este método compruebo si ya existe un usuario con ese mail
-userSchema.statics.checkUserMail = function (data, callback) {
+userSchema.statics.checkUserByMail = function (data, callback) {
     const log = {
         email: data.email
     };
 
+    User.findOne(log, (err, usuarioEncontrado) => {
+
+        if (err) {
+            return callback(err, null);
+        }
+        if (usuarioEncontrado === null) {
+            return callback(null, null);
+        }
+        callback(null, usuarioEncontrado);
+    });
+}
+//Con este método compruebo si ya existe un usuario con ese mail
+userSchema.statics.checkUserById = function (data, callback) {
+    const log = {
+        _id: data._id
+    };
     User.findOne(log, (err, usuarioEncontrado) => {
 
         if (err) {

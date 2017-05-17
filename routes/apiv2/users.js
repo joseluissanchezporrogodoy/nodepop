@@ -15,8 +15,9 @@ router.post('/', function(req, res, next) {
     let userData = { nombre: req.body.nombre, email: req.body.email, clave: req.body.clave};
     //Compruebo si el usuario existe en la base de datos antes de crearlo para no hacerlo dos veces
     //Considero que el mail debe ser único en el sistema
+
     let userMail = {email: req.body.email};
-    User.checkUserMail(userMail,(err,data)=>{
+    User.checkUserByMail(userMail,(err, data)=>{
         if (err) {
             return next(err);
         }
@@ -28,6 +29,7 @@ router.post('/', function(req, res, next) {
                 return res.json({ success: true, data: usuario});
             });
         }else {
+
             var errorUsuarioEncontrado =new Error('USER_REGISTERED');
             errorUsuarioEncontrado.status = '401';
             next(errorUsuarioEncontrado);

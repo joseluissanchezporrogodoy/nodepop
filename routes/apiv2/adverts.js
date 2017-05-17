@@ -6,7 +6,23 @@
 var express = require('express');
 var router = express.Router();
 const Advert = require('../../models/Advert');
+const checkUserByToken = require('../../lib/checkUserByToken');
 
+router.use((req,res,next)=>{
+    //Inicia la petición get
+    const token = req.query.token;
+    checkUserByToken(token,(err,decoded)=>{
+        if (err){
+            console.log('pasa por aqui');
+            console.log(err.message);
+            next(err);
+            return ;
+        }
+        next();
+        return;
+    });
+
+});
 
 /* GET del listado filtrado. */
 router.get('/', function(req, res, next) {
@@ -19,6 +35,12 @@ router.get('/', function(req, res, next) {
     const skip = parseInt(req.query.skip);
     const sort = req.query.sort;
     const fields = req.query.fields;
+
+
+
+
+    ///Continuar con la petición get
+
     ///Añadimos al filtro los tags
     if(tags)
         filter.tags = tags;
@@ -37,7 +59,7 @@ router.get('/', function(req, res, next) {
 
     Advert.list(filter, limit, skip, sort, fields, (err, anuncios) => {
         if (err) {
-            return next(err)
+            return next(err);
         }
         res.json({ success: true, result: anuncios });
         return;

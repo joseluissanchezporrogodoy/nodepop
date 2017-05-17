@@ -44,6 +44,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
 
   if(isApi(req)){
+
       // En vez de este código, llamar a customError para internacionalizar los mensajes de error
       customError(err.message, req.query.lan, (miError) => {
          res.json({success: false, error: miError});
