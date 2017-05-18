@@ -15,6 +15,16 @@ var http = require('http');
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
+const cluster = require('cluster');
+//Somos el master
+if(cluster.isMaster){
+  //Arrancamos los forks
+    const numCPUs = require('os').cpus().length;
+    for (let i=0; i<numCPUs;i++){
+      cluster.fork();
+    }
+}else{
+  //Arranque normal de la app
 /**
  * Create HTTP server.
  */
@@ -28,6 +38,7 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+}
 
 /**
  * Normalize a port into a number, string, or false.
