@@ -24,6 +24,13 @@ advertSchema.statics.list = function(filter, limit, skip, fields, sort, callback
     query.exec(callback);
 };
 
+
+//implementar devolver tags
+advertSchema.statics.returnTags= function(){
+
+
+};
+
 // luego creamos el modelo
 var Advert = mongoose.model('Advert', advertSchema);
 

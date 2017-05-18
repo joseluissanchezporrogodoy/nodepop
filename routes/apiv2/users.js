@@ -50,7 +50,7 @@ router.post('/autenticate', function(req, res, next) {
             return;
         }
         //Creo el token a partir del campo id
-        var token = jwt.sign(data._id,config.jwt.secret, {
+        var token = jwt.sign({ id: data._id },config.jwt.secret, {
             expiresIn: config.jwt.expiresInMinutes,
         });
         res.setHeader('x-access-token', token);

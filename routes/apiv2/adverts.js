@@ -8,6 +8,8 @@ var router = express.Router();
 const Advert = require('../../models/Advert');
 const checkUserByToken = require('../../lib/checkUserByToken');
 
+
+// Middleware para checkear los tokens de los usuarios
 router.use((req,res,next)=>{
     //Inicia la petición get
     const token = req.query.token;
@@ -36,11 +38,6 @@ router.get('/', function(req, res, next) {
     const sort = req.query.sort;
     const fields = req.query.fields;
 
-
-
-
-    ///Continuar con la petición get
-
     ///Añadimos al filtro los tags
     if(tags)
         filter.tags = tags;
@@ -68,20 +65,22 @@ router.get('/', function(req, res, next) {
 
 
 
-/* POST */
+/* POST para subir anuncios*/
 router.post('/', (req, res, next) => {
-
     const anuncio = new Advert(req.body);
-
     anuncio.save((err, data) => {
         if (err) {
             return next(err)
         }
-
         res.json({success: true, result: data});
     });
 });
 
+/* GET del listado filtrado. */
+router.get('/tags', function(req, res, next) {
+
+
+});
 
 
 
