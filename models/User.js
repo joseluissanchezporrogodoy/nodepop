@@ -64,6 +64,7 @@ userSchema.statics.checkUserById = function (data, callback) {
     });
 }
 
+// De momento sólo mira si la combinación de clave + password está correcta, quizás haya que mirar si el user existe y entonces comprobar su clave...
 userSchema.statics.checkUser = function(data, callback) {
     const log = {
         email: data.email,
@@ -74,6 +75,7 @@ userSchema.statics.checkUser = function(data, callback) {
             return callback(err, null);
         }
         if (data === null) {
+            //Poner usuario o clave incorrectos
             return callback(new Error('USER_NOT_FOUND'), {});
         }
         callback(null, data);

@@ -26,9 +26,13 @@ advertSchema.statics.list = function(filter, limit, skip, fields, sort, callback
 
 
 //implementar devolver tags
-advertSchema.statics.returnTags= function(){
-
-
+advertSchema.statics.returnTags= function(callback){
+    Advert.distinct("tags",(err,tags)=>{
+        if (err) {
+            return callback(err, null);
+        }
+        callback(null,tags);
+    });
 };
 
 // luego creamos el modelo

@@ -78,7 +78,16 @@ router.post('/', (req, res, next) => {
 
 /* GET del listado filtrado. */
 router.get('/tags', function(req, res, next) {
-
+    Advert.returnTags((err,tags)=>{
+        if (err){
+            console.log('pasa por aqui');
+            console.log(err.message);
+            next(err);
+            return ;
+        }
+        res.json({ success: true, result: tags });
+        return;
+    });
 
 });
 
