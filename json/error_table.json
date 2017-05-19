@@ -8,5 +8,13 @@
   "USER_REGISTERED":{
     "es": "El usuario ya está registrado",
     "en": "User registered"
+  },
+  "Unexpected token":{
+    "es": "Token no válido",
+    "en": "Unexpected token"
+  },
+  "invalid token":{
+    "es": "Token no válido",
+    "en": "Unexpected token"
   }
 }

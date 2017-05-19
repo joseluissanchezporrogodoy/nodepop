@@ -45,12 +45,16 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
 
   if(isApi(req)){
+      customError(err.message,req.query.lan)
+          .then(function (miError) {
+              res.json({success: false, error: miError});
+              return;
+          })
+          .catch(function(err) {
+             console.log(err);
+              return;
+          });
 
-      // En vez de este código, llamar a customError para internacionalizar los mensajes de error
-      customError(err.message, req.query.lan, (miError) => {
-         res.json({success: false, error: miError});
-          return;
-      });
     return;
   }
   // set locals, only providing error in development
