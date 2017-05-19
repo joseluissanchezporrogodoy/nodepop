@@ -7,7 +7,7 @@ var express = require('express');
 var router = express.Router();
 const Advert = require('../../models/Advert');
 const checkUserByToken = require('../../lib/checkUserByToken');
-
+const fs = require('fs');
 
 // Middleware para checkear los tokens de los usuarios
 router.use((req,res,next)=>{
@@ -70,24 +70,35 @@ router.post('/', (req, res, next) => {
     const anuncio = new Advert(req.body);
     anuncio.save((err, data) => {
         if (err) {
-            return next(err)
+            return next(err);
         }
         res.json({success: true, result: data});
     });
 });
 
-/* GET del listado filtrado. */
+/* GET de la etiquetas. */
 router.get('/tags', function(req, res, next) {
     Advert.returnTags((err,tags)=>{
         if (err){
-            console.log('pasa por aqui');
-            console.log(err.message);
             next(err);
             return ;
         }
         res.json({ success: true, result: tags });
         return;
     });
+
+});
+
+/* GET de la etiquetas permitidas. */
+router.get('/tags_permitted', function(req, res, next) {
+
+         getSome()
+        .then(function (data) {
+            console.log(data);
+        })
+        .catch(function(err) {
+           console.log(err);
+        });
 
 });
 
@@ -104,6 +115,17 @@ function makePriceQuery(precio){
         const precioArray = precio.split('-');
         return { '$gte': precioArray[0], '$lte': precioArray[1] };
     }
+}
+
+function getSome() {
+    return new Promise(function (resolve, reject) {
+        fs.readFile('json/tags_permitted.json', 'utf-8', function(err, data) {
+            if(err) {
+                return reject(err);
+            }
+            return resolve(data);
+        });
+    });
 }
 
 module.exports = router;

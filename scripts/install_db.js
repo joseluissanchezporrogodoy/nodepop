@@ -14,7 +14,7 @@ const Advert = mongoose.model('Advert');
 const User = mongoose.model('User');
 const fs = require('fs');
 const sha = require('sha256');
-const json = JSON.parse(fs.readFileSync('lib/adverts_samples.json',{ encoding: 'utf-8'}));
+const json = JSON.parse(fs.readFileSync('json/adverts_samples.json',{ encoding: 'utf-8'}));
 const conn = mongoose.connection;
 
 //Le decimos a moongose que librería de promesas vamos a usar

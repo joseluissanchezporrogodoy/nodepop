@@ -9,11 +9,11 @@ const Advert = require('../../models/Advert');
 
 /* GET de el listado completo de anuncios, sin filtro. */
 router.get('/', function(req, res, next) {
-    Advert.find().exec((err, list) => {
+    Advert.find().exec((err, list)=> {
         if (err) {
             return next(err);
         }
-        res.json({ ok: true, list: list})
+        res.json({ ok: true, list: list});
     });
 });
 
