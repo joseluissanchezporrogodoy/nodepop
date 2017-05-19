@@ -5,7 +5,8 @@
 
 const mongoose = require('mongoose');
 const sha = require('sha256');
-// primero definimos un esquema
+
+// Definimos el esquema
 const userSchema = mongoose.Schema({
     nombre: String,
     //Creo un index para el mail para acelerar búsquedas
@@ -14,23 +15,14 @@ const userSchema = mongoose.Schema({
 });
 
 
-// creamos un método estático
-userSchema.statics.list = function(filter, limit, skip, fields, sort, callback) {
-    const query = User.find(filter);
-    query.limit(limit);
-    query.skip(skip);
-    query.select(fields);
-    query.sort(sort);
-    query.exec(callback);
-};
-
+// Método para insertar usuario
 userSchema.statics.insertUser = function(data, callback) {
     const pass = sha(data.clave);
     data.clave = pass;
     new User(data).save(callback);
 }
 
-//Con este método compruebo si ya existe un usuario con ese mail
+//Método que comprueba si ya existe un usuario con ese mail
 userSchema.statics.checkUserByMail = function (data, callback) {
     const log = {
         email: data.email
@@ -47,7 +39,8 @@ userSchema.statics.checkUserByMail = function (data, callback) {
         callback(null, usuarioEncontrado);
     });
 }
-//Con este método compruebo si ya existe un usuario con ese mail
+
+//Método que comprueba si ya existe un usuario con ese id
 userSchema.statics.checkUserById = function (data, callback) {
     const log = {
         _id: data._id
@@ -64,21 +57,31 @@ userSchema.statics.checkUserById = function (data, callback) {
     });
 }
 
-// De momento sólo mira si la combinación de clave + password está correcta, quizás haya que mirar si el user existe y entonces comprobar su clave...
+
+// Método para comprobar si el user existe y en ese caso que la contraseña es correcta
 userSchema.statics.checkUser = function(data, callback) {
+
     const log = {
-        email: data.email,
-        clave: sha(data.clave)
+        email: data.email
     };
-    User.findOne(log, (err, data) => {
+    User.findOne(log, (err, usuario) => {
         if (err) {
             return callback(err, null);
         }
-        if (data === null) {
-            //Poner usuario o clave incorrectos
-            return callback(new Error('USER_NOT_FOUND'), {});
+        if (usuario === null) {
+            var errorUsuarioEncontrado =new Error('USER_NOT_FOUND');
+            errorUsuarioEncontrado.status = '404';
+            return callback(errorUsuarioEncontrado);
         }
-        callback(null, data);
+        //Compruebo la contraseña
+        if(usuario.clave===sha(data.clave)){
+            callback(null, usuario);
+        }else{
+            var contraIncorrecta =new Error('INVALID_PASSWORD');
+            contraIncorrecta.status = '404';
+            return callback(contraIncorrecta, {});
+        }
+
     });
 }
 

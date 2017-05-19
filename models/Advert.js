@@ -25,7 +25,7 @@ advertSchema.statics.list = function(filter, limit, skip, fields, sort, callback
 };
 
 
-//implementar devolver tags
+//devuelve las tags que se están utilizando en la base de datos
 advertSchema.statics.returnTags= function(callback){
     Advert.distinct("tags",(err,tags)=>{
         if (err) {
@@ -35,7 +35,7 @@ advertSchema.statics.returnTags= function(callback){
     });
 };
 
-// luego creamos el modelo
+
 var Advert = mongoose.model('Advert', advertSchema);
 
 

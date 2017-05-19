@@ -44,12 +44,10 @@ router.post('/autenticate', function(req, res, next) {
     User.checkUser(userData,(err,data)=>{
         if (err) {
             //Cambiar a usuario no encontrado
-            var errorUsuarioEncontrado =new Error('USER_NOT_FOUND');
-            errorUsuarioEncontrado.status = '404';
-            next(errorUsuarioEncontrado);
+
+            next(err);
             return;
         }
-        //Creo el token a partir del campo id
         var token = jwt.sign({ id: data._id },config.jwt.secret, {
             expiresIn: config.jwt.expiresInMinutes,
         });

@@ -13,6 +13,10 @@
     "es": "Token no válido",
     "en": "Unexpected token"
   },
+  "INVALID_PASSWORD":{
+    "es": "Contraseña no válida",
+    "en": "Invalid password"
+  },
   "invalid token":{
     "es": "Token no válido",
     "en": "Unexpected token"
