@@ -12,6 +12,11 @@ const path = require('path');
 
 // Middleware para checkear los tokens de los usuarios
 router.use((req,res,next)=>{
+    //Si es una petición de imagen la dejo que pase sin token
+    if(isImage(req)){
+        next();
+        return;
+    }
     //Inicia la petición get
     const token = req.query.token;
     checkUserByToken(token,(err,decoded)=>{
@@ -136,5 +141,9 @@ function getSome() {
         });
     });
 }
-
+//Miro si es una llamada a imagenes
+function isImage(req) {
+    console.log(req.originalUrl);
+    return req.originalUrl.indexOf('/apiv2/anuncios/imagenes') === 0;
+}
 module.exports = router;

@@ -26,7 +26,7 @@ router.post('/', function(req, res, next) {
                 if (err) {
                     return next(err);
                 }
-                return res.json({ success: true, data: usuario});
+                return res.json({ success: true, data: 'Usuario creado'});
             });
         }else {
 
@@ -44,7 +44,6 @@ router.post('/autenticate', function(req, res, next) {
     User.checkUser(userData,(err,data)=>{
         if (err) {
             //Cambiar a usuario no encontrado
-
             next(err);
             return;
         }
@@ -52,7 +51,7 @@ router.post('/autenticate', function(req, res, next) {
             expiresIn: config.jwt.expiresInMinutes,
         });
         res.setHeader('x-access-token', token);
-        res.json({success: true, data: token });
+        res.json({success: true, token: token });
     });
 });
 module.exports = router;
