@@ -8,6 +8,7 @@ var router = express.Router();
 const Advert = require('../../models/Advert');
 const checkUserByToken = require('../../lib/checkUserByToken');
 const fs = require('fs');
+const path = require('path');
 
 // Middleware para checkear los tokens de los usuarios
 router.use((req,res,next)=>{
@@ -102,7 +103,14 @@ router.get('/tags_permitted', function(req, res, next) {
           return;
         });
 });
+/* GET de imágenes */
+router.get('/imagenes/:imagen', (req, res, next) => {
+    console.log('llega');
+    const ruta = path.join(__dirname, '../../public/images', req.params.imagen);
 
+    res.sendFile(ruta);
+    return;
+});
 
 
 function makePriceQuery(precio){

@@ -27,10 +27,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Rutas
 app.use('/', require('./routes/index'));
-app.use('/apiv1/adverts', require('./routes/apiv1/adverts'));
-app.use('/apiv2/adverts', require('./routes/apiv2/adverts'));
+app.use('/apiv1/anuncios', require('./routes/apiv1/adverts'));
+app.use('/apiv2/anuncios', require('./routes/apiv2/adverts'));
 app.use('/apiv2/users', require('./routes/apiv2/users'));
-app.use('/apiv2/images', require('./routes/apiv2/images'));
+//app.use('/apiv2/anuncios', require('./routes/apiv2/adverts'));
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -51,7 +51,8 @@ app.use(function(err, req, res, next) {
               return;
           })
           .catch(function(err) {
-             console.log(err);
+              res.json({success: false, error: err});
+              console.log(err);
               return;
           });
 
