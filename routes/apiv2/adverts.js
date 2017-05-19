@@ -91,15 +91,16 @@ router.get('/tags', function(req, res, next) {
 
 /* GET de la etiquetas permitidas. */
 router.get('/tags_permitted', function(req, res, next) {
-
          getSome()
         .then(function (data) {
-            console.log(data);
+            var obj = JSON.parse(data);
+            res.json({ success: true, result: obj.tags });
+            return;
         })
         .catch(function(err) {
-           console.log(err);
+          next(err);
+          return;
         });
-
 });
 
 
