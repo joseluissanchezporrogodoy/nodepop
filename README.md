@@ -13,10 +13,21 @@ Has been tested with the following versions:
 Other secundary libraries are specific in: *package.json*
 #### Installation
 
+- Install
 
-*Arrancar mongo: ./bin/mongodb --dbpath ./data/db --directoryperdb
+`git clone https://github.com/joseluissanchezporrogodoy/nodepop.git`  
+`cd <proyect_path>`  
+`npm install` 
 
-* decir en qué versiones de node y npm está instalado.
+`npm run dev (MacOS)`  
+`npm run dev:win (Windows)`
+
+- Inicializate database with examples
+
+`npm run installDB`
+
+
+
 
 **USUARIOS**
 ----
