@@ -13,9 +13,26 @@ router.get('/', function(req, res, next) {
 /* POST insertar usuarios. */
 router.post('/', function(req, res, next) {
     let userData = { nombre: req.body.nombre, email: req.body.email, clave: req.body.clave};
+
+    ///Compruebo campos vacíos
+    if (!req.body || !req.body.nombre || !req.body.email || !req.body.clave) {
+        var emptyField =new Error('EMPTY_FIELD');
+        emptyField.status = '400';
+        next(emptyField);
+        return;
+    }
+    //Compruebo formato mail
+    if (!/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(req.body.email)) {
+        var mailFail =new Error('MAIL_FORMAT_INCORRECT');
+        mailFail.status = '400';
+        next(mailFail);
+        return;
+
+    }
+
+
     //Compruebo si el usuario existe en la base de datos antes de crearlo para no hacerlo dos veces
     //Considero que el mail debe ser único en el sistema
-
     let userMail = {email: req.body.email};
     User.checkUserByMail(userMail,(err, data)=>{
         if (err) {

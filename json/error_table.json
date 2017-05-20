@@ -4,7 +4,6 @@
     "es": "Usuario no encontrado",
     "en": "User doesn't found"
   },
-
   "USER_REGISTERED":{
     "es": "El usuario ya está registrado",
     "en": "User registered"
@@ -20,5 +19,13 @@
   "invalid token":{
     "es": "Token no válido",
     "en": "Unexpected token"
+  },
+  "EMPTY_FIELD":{
+    "es": "Campos vacíos",
+    "en": "Empty fields"
+  },
+  "MAIL_FORMAT_INCORRECT":{
+    "es": "Formato de correo no válido",
+    "en": "Mail format incorrect"
   }
 }
