@@ -76,10 +76,10 @@ This is to register users.
     * **Code:** 400 MAIL_FORMAT_INCORRECT <br />
       **Content:** `{"success": false,"error": "Formato de correo no válido"}`  
       
-**Login User**
+**Autenticate User**
 ----
 
-This is to register users.
+This is to autenticate users.
 
 * **URL**
 
@@ -117,4 +117,136 @@ This is to register users.
   * **Code:** 404 USER_NOT_FOUND <br />
     **Content:** `{"success": false,"error": "User doesn't found"}`
     
+    
+    
+**Adverts list**
+----
+
+This is to get adverts list and filter it.
+
+* **URL**
+
+  </apiv2/usuarios/anuncios>
+
+* **Method:**
+  
+  `GET`  
+ *  **URL Params**
+  
+     **Required:**  
+         
+     `token=[Alphanumeric]` // For check if the user is autorized 
      
+     **Optional:**
+   
+     `lan=[String]`  // May be 'es' for Spanish 'en' English  
+     
+     **Optional for Filter:**
+     
+     `tag=[String]`  // Ads that are tagged   
+     `sale=[Boolean]`  // Whether the ad is a sale or a search  
+     `name=[String]`  // Ads whose name begins with the value supplied   
+     `price=[Number]`  // 
+Filter by price. You can specify a range by separating the values ​​with '-'. The allowed combinations would be 50- (May of 50), -100 (less than 100) or 50-10 (between 50 and 100)   
+     `start=[Number]`  // Number of ads to ignore result  
+     `start=[Number]`  // Number of ads to get
+  
+* **Success Response:**
+  
+  * **Code:** 200 <br />
+    **Content:** `{ "success": true,"result": "<List of filtered or unfiltered Ads>" }`
+ 
+* **Error Response:**
+
+  * **Code:** 401 Unexpected token <br />
+    **Content:** `{ "success": false,"error": "Unexpected token"}`
+
+
+    
+**Tags list permited**
+----
+
+This is to get tags list permited in the system.
+
+* **URL**
+
+  </apiv2/usuarios/anuncios/tags_permitted>
+
+* **Method:**
+  
+  `GET`  
+ *  **URL Params**
+  
+     **Required:**  
+         
+     `token=[Alphanumeric]` // For check if the user is autorized 
+     
+     **Optional:**
+   
+     `lan=[String]`  // May be 'es' for Spanish 'en' English  
+     
+  
+* **Success Response:**
+  
+  * **Code:** 200 <br />
+    **Content:** `{ "success": true,"result": "<List of permitted tags>" }`
+ 
+* **Error Response:**
+
+  * **Code:** 401 Unexpected token <br />
+    **Content:** `{ "success": false,"error": "Unexpected token"}`
+
+
+**Tags list**
+----
+
+This is to get tags list in the system.
+
+* **URL**
+
+  </apiv2/usuarios/anuncios/tags>
+
+* **Method:**
+  
+  `GET`  
+ *  **URL Params**
+  
+     **Required:**  
+         
+     `token=[Alphanumeric]` // For check if the user is autorized 
+     
+     **Optional:**
+   
+     `lan=[String]`  // May be 'es' for Spanish 'en' English  
+     
+  
+* **Success Response:**
+  
+  * **Code:** 200 <br />
+    **Content:** `{ "success": true,"result": "<List of tags>" }`
+ 
+* **Error Response:**
+
+  * **Code:** 401 Unexpected token <br />
+    **Content:** `{ "success": false,"error": "Unexpected token"}`
+
+
+**Image**
+----
+
+This is to get adverts images.
+
+* **URL**
+
+  </apiv2/usuarios/anuncios/imagenes/<image name> >
+
+* **Success Response:**
+  
+    Imagen
+ 
+* **Error Response:**
+
+  * **Code:** 404 Not Found <br />
+    **Content:** `{ "success": false,"error": "Not Found"}`
+    
+    
