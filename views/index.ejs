@@ -1,11 +1,180 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+<h1 id="nodepop">NodePop</h1>
+<p><em>NODEPOP</em> is an API developed to test the business viability of a second-hand sale / purchase application.</p>
+<h2 id="installation-and-requirements"><strong>Installation and requirements</strong></h2>
+<h4 id="requirements">Requirements</h4>
+<p>Has been tested with the following versions:</p>
+<pre><code>- Node 7.10.0
+- npm 4.2.0</code></pre>
+<p>Other secundary libraries are specific in: <em>package.json</em></p>
+<h4 id="installation">Installation</h4>
+<ul>
+  <li>Install</li>
+</ul>
+<p><code>git clone https://github.com/joseluissanchezporrogodoy/nodepop.git</code><br />
+  <code>cd &lt;proyect_path&gt;</code><br />
+  <code>npm install</code></p>
+<p><code>npm run dev (MacOS)</code><br />
+  <code>npm run dev:win (Windows)</code></p>
+<ul>
+  <li>Inicializate database with examples</li>
+</ul>
+<p><code>npm run installDB</code></p>
+<h2 id="regiter-user"><strong>Regiter User</strong></h2>
+<p>This is to register users.</p>
+<ul>
+  <li><strong>URL</strong></li>
+</ul>
+<p></apiv2/usuarios></p>
+<ul>
+  <li><strong>Method:</strong></li>
+</ul>
+<p><code>POST</code></p>
+<ul>
+  <li><p><strong>URL Params</strong></p>
+    <p><strong>Optional:</strong></p>
+    <p><code>lan=[String]</code></p>
+    <p>May be 'es' for Spanish 'en' English</p></li>
+  <li><p><strong>Data Params</strong></p></li>
+</ul>
+<p><code>nombre:[String]</code><br />
+  <code>email:[String]</code><br />
+  <code>clave:[Alfanumeric]</code></p>
+<ul>
+  <li><p><strong>Success Response:</strong></p></li>
+  <li><p><strong>Code:</strong> 200 <br /> <strong>Content:</strong> <code>{ &quot;success&quot;: true,&quot;data&quot;: &quot;Usuario creado&quot; }</code></p></li>
+  <li><p><strong>Error Response:</strong></p></li>
+  <li><p><strong>Code:</strong> 400 EMPTY_FIELD <br /> <strong>Content:</strong> <code>{ &quot;success&quot;: false,&quot;error&quot;: &quot;Empty fields&quot;}</code></p></li>
+</ul>
+<p>OR</p>
+<ul>
+  <li><strong>Code:</strong> 401 USER_REGISTERED ENTRY <br /> <strong>Content:</strong> <code>{&quot;success&quot;: false,&quot;error&quot;: &quot;User registered&quot;}</code></li>
+</ul>
+<p>OR</p>
+<pre><code>* **Code:** 400 MAIL_FORMAT_INCORRECT &lt;br /&gt;
+  **Content:** `{&quot;success&quot;: false,&quot;error&quot;: &quot;Formato de correo no válido&quot;}`
+  </code></pre>
+<h2 id="autenticate-user"><strong>Autenticate User</strong></h2>
+<p>This is to autenticate users.</p>
+<ul>
+  <li><strong>URL</strong></li>
+</ul>
+<p></apiv2/usuarios/autenticate></p>
+<ul>
+  <li><strong>Method:</strong></li>
+</ul>
+<p><code>POST</code></p>
+<ul>
+  <li><p><strong>URL Params</strong></p>
+    <p><strong>Optional:</strong></p>
+    <p><code>lan=[String]</code></p>
+    <p>May be 'es' for Spanish 'en' English</p></li>
+  <li><p><strong>Data Params</strong></p></li>
+</ul>
+<p><code>email:[String]</code><br />
+  <code>clave:[Alfanumeric]</code></p>
+<ul>
+  <li><p><strong>Success Response:</strong></p></li>
+  <li><p><strong>Code:</strong> 200 <br /> <strong>Content:</strong> <code>{ &quot;success&quot;: true,&quot;token&quot;: &quot;&lt;Aphanumeric token&gt;&quot; }</code></p></li>
+  <li><p><strong>Error Response:</strong></p></li>
+  <li><p><strong>Code:</strong> 404 INVALID_PASSWORD <br /> <strong>Content:</strong> <code>{ &quot;success&quot;: false,&quot;error&quot;: &quot;Invalid password&quot;}</code></p></li>
+</ul>
+<p>OR</p>
+<ul>
+  <li><strong>Code:</strong> 404 USER_NOT_FOUND <br /> <strong>Content:</strong> <code>{&quot;success&quot;: false,&quot;error&quot;: &quot;User doesn't found&quot;}</code></li>
+</ul>
+<h2 id="adverts-list"><strong>Adverts list</strong></h2>
+<p>This is to get adverts list and filter it.</p>
+<ul>
+  <li><strong>URL</strong></li>
+</ul>
+<p></apiv2/usuarios/anuncios></p>
+<ul>
+  <li><strong>Method:</strong></li>
+</ul>
+<p><code>GET</code><br />
+  * <strong>URL Params</strong></p>
+<pre><code> **Required:**
+
+ `token=[Alphanumeric]` // For check if the user is autorized
+
+ **Optional:**
+
+ `lan=[String]`  // May be &#39;es&#39; for Spanish &#39;en&#39; English
+
+ **Optional for Filter:**
+
+ `tag=[String]`  // Ads that are tagged
+ `sale=[Boolean]`  // Whether the ad is a sale or a search
+ `name=[String]`  // Ads whose name begins with the value supplied
+ `price=[Number]`  // </code></pre>
+<p>Filter by price. You can specify a range by separating the values ​​with '-'. The allowed combinations would be 50- (May of 50), -100 (less than 100) or 50-10 (between 50 and 100)<br />
+  <code>start=[Number]</code> // Number of ads to ignore result<br />
+  <code>start=[Number]</code> // Number of ads to get</p>
+<ul>
+  <li><p><strong>Success Response:</strong></p></li>
+  <li><p><strong>Code:</strong> 200 <br /> <strong>Content:</strong> <code>{ &quot;success&quot;: true,&quot;result&quot;: &quot;&lt;List of filtered or unfiltered Ads&gt;&quot; }</code></p></li>
+  <li><p><strong>Error Response:</strong></p></li>
+  <li><p><strong>Code:</strong> 401 Unexpected token <br /> <strong>Content:</strong> <code>{ &quot;success&quot;: false,&quot;error&quot;: &quot;Unexpected token&quot;}</code></p></li>
+</ul>
+<h2 id="tags-list-permited"><strong>Tags list permited</strong></h2>
+<p>This is to get tags list permited in the system.</p>
+<ul>
+  <li><strong>URL</strong></li>
+</ul>
+<p></apiv2/usuarios/anuncios/tags_permitted></p>
+<ul>
+  <li><strong>Method:</strong></li>
+</ul>
+<p><code>GET</code><br />
+  * <strong>URL Params</strong></p>
+<pre><code> **Required:**
+
+ `token=[Alphanumeric]` // For check if the user is autorized
+
+ **Optional:**
+
+ `lan=[String]`  // May be &#39;es&#39; for Spanish &#39;en&#39; English
+ </code></pre>
+<ul>
+  <li><p><strong>Success Response:</strong></p></li>
+  <li><p><strong>Code:</strong> 200 <br /> <strong>Content:</strong> <code>{ &quot;success&quot;: true,&quot;result&quot;: &quot;&lt;List of permitted tags&gt;&quot; }</code></p></li>
+  <li><p><strong>Error Response:</strong></p></li>
+  <li><p><strong>Code:</strong> 401 Unexpected token <br /> <strong>Content:</strong> <code>{ &quot;success&quot;: false,&quot;error&quot;: &quot;Unexpected token&quot;}</code></p></li>
+</ul>
+<h2 id="tags-list"><strong>Tags list</strong></h2>
+<p>This is to get tags list in the system.</p>
+<ul>
+  <li><strong>URL</strong></li>
+</ul>
+<p></apiv2/usuarios/anuncios/tags></p>
+<ul>
+  <li><strong>Method:</strong></li>
+</ul>
+<p><code>GET</code><br />
+  * <strong>URL Params</strong></p>
+<pre><code> **Required:**
+
+ `token=[Alphanumeric]` // For check if the user is autorized
+
+ **Optional:**
+
+ `lan=[String]`  // May be &#39;es&#39; for Spanish &#39;en&#39; English
+ </code></pre>
+<ul>
+  <li><p><strong>Success Response:</strong></p></li>
+  <li><p><strong>Code:</strong> 200 <br /> <strong>Content:</strong> <code>{ &quot;success&quot;: true,&quot;result&quot;: &quot;&lt;List of tags&gt;&quot; }</code></p></li>
+  <li><p><strong>Error Response:</strong></p></li>
+  <li><p><strong>Code:</strong> 401 Unexpected token <br /> <strong>Content:</strong> <code>{ &quot;success&quot;: false,&quot;error&quot;: &quot;Unexpected token&quot;}</code></p></li>
+</ul>
+<h2 id="image"><strong>Image</strong></h2>
+<p>This is to get adverts images.</p>
+<ul>
+  <li><strong>URL</strong></li>
+</ul>
+<p></apiv2/usuarios/anuncios/imagenes/<image name> &gt;</p>
+<ul>
+  <li><p><strong>Success Response:</strong></p>
+    <p>Imagen</p></li>
+  <li><p><strong>Error Response:</strong></p></li>
+  <li><p><strong>Code:</strong> 404 Not Found <br /> <strong>Content:</strong> <code>{ &quot;success&quot;: false,&quot;error&quot;: &quot;Not Found&quot;}</code></p></li>
+</ul>

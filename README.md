@@ -10,7 +10,8 @@ Has been tested with the following versions:
     
     - Node 7.10.0
     - npm 4.2.0
-Other secundary libraries are specific in: *package.json*
+Other secundary libraries are specific in: *package.json* 
+
 #### Installation
 
 - Install
