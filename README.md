@@ -274,4 +274,4 @@ The deployment has been done on Amazon AWS.
 
 * **Static ip**
 
- [13.58.156.255](https://13.58.156.255)
+ [13.58.156.255](13.58.156.255)
