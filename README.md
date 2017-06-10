@@ -251,3 +251,27 @@ This is to get adverts images.
     **Content:** `{ "success": false,"error": "Not Found"}`
     
     
+    
+ # Deployment test
+ 
+The deployment has been done on Amazon AWS. 
+
+* **Domain**
+
+[https://nodepop.joseluissanchezporrogodoy.com](URL "https://nodepop.joseluissanchezporrogodoy.com")
+
+* **GET Example**
+
+[https://nodepop.joseluissanchezporrogodoy.com/apiv1/anuncios](URL "https://nodepop.joseluissanchezporrogodoy.com/apiv1/anuncios")
+
+* **Static file Example**
+
+[https://nodepop.joseluissanchezporrogodoy.com/images/moto.png](URL "https://nodepop.joseluissanchezporrogodoy.com/images/moto.png")
+
+* **Web**
+
+[https://joseluissanchezporrogodoy.com/](URL "https://joseluissanchezporrogodoy.com/")
+
+* **Static ip**
+
+ [13.58.156.255](URL "https://13.58.156.255")
